@@ -9,11 +9,11 @@ a savoir une variable d'arret
  
 */
 
-int temps=1;
-int n=0;
-int cumul=0;
-int arret=1e6;
-int compteur_file_vide=0;
+long int temps=1;
+long int n=0;
+long int cumul=0;
+long int arret=1e6;
+long int compteur_file_vide=0;
 
 int nombre_arrivee(double p0,double p2){
 	double p1 =1 -p0-p2;
@@ -31,7 +31,7 @@ int nombre_arrivee(double p0,double p2){
 	}
 }
 void arrive_event(){
-	n+= nombre_arrivee(0.4,0.35);
+	n+= nombre_arrivee(0.35,0.6);
 	cumul+=n;
 }
 
@@ -47,7 +47,7 @@ void service_client(){
 
 double moyenne(){
 	
-	return 0*0.4 + 1*0.25 + 2*0.35;
+	return 0*0.35 + 1*0.05 + 2*0.6;
 }
 
 
