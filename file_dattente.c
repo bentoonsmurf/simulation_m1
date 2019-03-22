@@ -13,7 +13,7 @@ int temps=1;
 int n=0;
 int cumul=0;
 int arret=1e6;
-
+int compteur_file_vide=0;
 
 int nombre_arrivee(double p0,double p2){
 	double p1 =1 -p0-p2;
@@ -52,7 +52,6 @@ double moyenne(){
 
 
 
-
 void simulateur(FILE* f1){
 	long double nmoyen;
 	while(arret>0){
@@ -60,11 +59,14 @@ void simulateur(FILE* f1){
 		nmoyen=(long double)cumul/temps;
 		fprintf(f1,"%5ld    %Lf \n",temps,nmoyen);
 		service_client();
+
+		compteur_file_vide += n==0;
 		
 		temps++;
 	}
-	
-	//printf(*p(n=0)= %f\n",double
+	double d=(double)compteur_file_vide/temps;
+	printf("\n la file est vide %f % du temps",d);
+
 }
 
 int main(){
