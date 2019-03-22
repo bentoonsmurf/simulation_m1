@@ -30,4 +30,4 @@ Tapez 'q()' pour quitter R.
 > 
 > proc.time()
 utilisateur     système      écoulé 
-      8.450       0.341       9.060 
+      0.363       0.018       0.380 
