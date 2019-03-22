@@ -1,5 +1,6 @@
 all: comp_file_dattente
 	./exec
+	 R CMD BATCH "draw.R"
 
 comp:
 	gcc rand.c -o exec 
