@@ -4,10 +4,10 @@
 #include <unistd.h>
 #include <math.h>
 #define epsilon 1e-3
-#define lambda 9
+#define lambda 3
 #define mu 10
-#define maxevent 100000
-#define maxtemps 5000
+#define maxevent 10000
+#define maxtemps 1000
 
 
 
@@ -17,14 +17,12 @@ a savoir une variable d'arret
  
 */
 
-long int temps=0;
+double temps=0;
 long int n=0;
-long int cumul=0;
-long int arret=1e6;
-long int compteur_file_vide=0;
-long double moyenne_precedente;
-long int compteur_stabilite=0;
-long int compteur=0;
+double cumul=0;
+double arret=1e6;
+
+int compteur=0;
 
 typedef struct event{
 	int type;// 0 arr ive 1 sortie
@@ -49,7 +47,7 @@ double exponentiel(int lbda){
 		r=(double)random()/RAND_MAX;
 		
 	}
-	return log(r) / lbda*1.0;// - ln(u)/lambda avec u= unif(0,1)
+	return -log(r) / lbda*1.0;// - ln(u)/lambda avec u= unif(0,1)
 }
 
 void ajouter_ech(event e){
@@ -62,6 +60,23 @@ void ajouter_ech(event e){
 	else {printf(" echeancier plein"); exit(0);}
 }
 
+void affiche_ech(){
+	
+	event e;
+	printf("[");
+	
+	for(int i=0;i<ech.taille;i++){
+		e=ech.tab[i];
+		if ( e.type==0)
+			printf("(AC,%lf,%d),",e.date,e.etat);
+		if ( e.type==1)
+			printf("(FS,%lf,%d),",e.date,e.etat);
+	}
+	
+	printf(" ]\n\\n");
+	
+}
+
 void init_ech(){
 	event e;
 	e.type = 0;
@@ -69,6 +84,7 @@ void init_ech(){
 	e.etat=0;
 	ech.taille=0;
 	ajouter_ech(e);
+	printf("apres ajout\n");
 }
 
 
@@ -92,7 +108,7 @@ int nombre_arrivee(double p0,double p2){
 	}
 }
 void arrive_event(event e){
-	
+	printf("arriver event");
 	n++;
 	event  e1;
 	e1.type=0;
@@ -110,6 +126,7 @@ void arrive_event(event e){
 	temps= e.date;
 }
 void service_event(event e){
+	printf("serviceevent ");
 	if(n>0){
 	n--;
 	if(n>0){
@@ -119,8 +136,10 @@ void service_event(event e){
 		e1.etat=0;// changé dans simulation
 		ajouter_ech(e1);
 	
-	}
-}temps= e.date;
+	}	
+	temps= e.date;
+}
+
 }
 
 void afficher(){
@@ -135,19 +154,20 @@ void afficher(){
 	}
 	printf("\n \n");
 }
-
-void extraire(){
-	int i,imin;
+ 
+event extraire(){
+	int i;
+	int imin;
 	event min;
-	for(i=;i<ech.taille;i++){
+	for(i=0;i<ech.taille;i++){
 		if(ech.tab[i].etat==0){
 			min= ech.tab[i];
-			imin=i
+			imin=i;
 			break;
 		}
 	}
 	for(i=0;i<ech.taille;i++){
-		if (min.date > ech.tab[i] && ech.tab[i].etat== 0){
+		if (min.date > ech.tab[i].date && ech.tab[i].etat== 0){
 			min=ech.tab[i];
 			imin = 1;
 		}
@@ -172,36 +192,60 @@ int condition_arret(long double old , long double new){
 	
 	return 0;
 }
-/*
-void simulateur(FILE* f1){
-	long double nmoyen=0;//arret>0
-	
-	while(condition_arret(moyenne_precedente,nmoyen) ==0 ){
-		
-		arrive_event();
-		
-		moyenne_precedente=nmoyen;
-		nmoyen=(long double)cumul/temps;
-		fprintf(f1,"%5ld    %Lf \n",temps,nmoyen);
-		
-		service_client();
-		compteur_file_vide += n==0;
-		
-		temps++;
-		
-		
-	}
-	double d=(double)compteur_file_vide/temps;
-	printf("\n la file est vide %f du temps",d);
 
+
+
+
+void simulateur(FILE* f1){
+	double oldmoyen;
+	double nmoyen;
+	init_ech();
+	event e;
+		printf(" avant le while\n");
+		
+	int i=0;
+	while(i<10)//condition_arret(oldmoyen,nmoyen) == 0){
+	{
+		e=extraire();
+		cumul +=(e.date-temps)*n;
+		oldmoyen = nmoyen;
+			nmoyen= cumul/temps;
+				
+		if(temps == 0){
+			
+			printf("temps == 0 et n =0 et nmoyen )0\n");
+			fprintf(f1,"0   0 \n");
+			
+		}
+		else{
+		
+			printf("temps == %f et n =%d et nmoyen =%f ech.taille=%d\n",temps,n,nmoyen,ech.taille);
+			fprintf(f1,"%f   %f \n",temps,nmoyen);
+			
+		}
+		
+		if(e.type==0)
+			arrive_event(e);
+		if(e.type==1)
+			service_event(e);
+		i++;
+	}
+	
+	
 }
 
-*/
 int main(){
 	srandom(getpid()+ time(NULL));
-	FILE *f1 =fopen("simulation_CST.data","w");
-	//simulateur(f1);
-	fclose(f1);
-	return 0;
-}
+	FILE* f1 =fopen("simulation_mm1.data","a");
+fprintf(f1,"bjfrf \n");
 
+		simulateur(f1);
+		
+	
+	fclose(f1);
+	exit(0);
+}
+// ro = 0.2 --> le raport ent lambda et mu = 0.2 
+// plus lambda  mond e plus le nb de client augmente 
+//lambda < mu  lambda tend vers mu
+	
