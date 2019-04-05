@@ -1,0 +1,102 @@
+discret = on voi l'enssemble ou elle prend des valeures
+
+une variable aleatoire est a densite = elle est continue
+fonction de repartition ou bien distribution cummullé
+F(X(x) ) = P(X<=x)
+
+cas continue = Fx(x)= integrale(-inf,x) fx(t) dt
+
+propriété des fonction de REPARTITION
+
+	- pour tout x deans E(espace d'etat) 
+	la fonction f doit etre croissante et 
+	la lim(x---> -inf)=0
+	lim(x--->+inf)=1
+
+	P(0<=x<=b)	= P(x<=b)-P(x<=a)
+				=Fx((b) -Fx(a)
+			
+propriete DENSITE
+	Fx(x)= integrale(-inf,x) fx(t) dt
+	fx(x)=Fx'(x)
+	-f positive pour tout x
+	-integrale(-inf,+inf) fx(x) dx =1
+
+mayenne varience ecart type
+varience = dispertion des variables
+ecart type = racine(varience)
+
+cd 
+moyenne = esperance (x) = somme(x dans E)(x * P(x))
+
+cc
+moyenne  =integrale(-inf,+inf) x*fx(x) dx
+
+
+varience[x]
+v[x]=E[x²]-(E[x])²
+ectype(x)=racine(V[x])
+
+methode de la transformation inverse de la fonction de repartition
+il faut connaitre la fonction de repartition
+il faut que la fonction soit inversible
+calcul de f-1x(x)
+
+methode de rejet
+il faut connaitre la fonction de densite flbda(x)
+il faut pouvoir majorer la fonction
+il existe un m tel  que pour tout  x dans E fx(x) <= m
+
+
+aglo fonction de denstite //methode de rejet
+// m = majorant
+do
+{
+x=(b-a)unif()+alpha;
+y=m unif();
+
+}while (f(x)<=y);
+
+
+aglo fonction inverse
+y=Fx(x)
+x= en fonction de y et autres
+
+
+ex 8
+f(x) = alphx² pour tout x dans[-A,+A]
+
+pour que f soit une fonction de densite 
+	fx(x)>0
+	-integrale(-inf,+inf) fx(x) dx =1
+
+	-integrale(-1,1) aplha x² dx =(alpha/3)A³+(alph/3)A³
+							=(2 alpha /3)A³
+							
+	f> 0 si aplah >0
+	f crooissante si alpha >0
+
+por que f soit une fonction de repartition
+	f(-A)=0 ??
+	f(A)= 1 ??
+	f n'est pas une fonction de repartition
+
+utilison la methode de rejet
+m devien 3/2a car f(x)<3/2a
+f definit sur[-A,+A]
+
+double methode_rejet(){
+	double x;double y;
+	do{
+		x=2a unif()-A;
+		y=(3/2a)unif();
+		}while(f(x)>= y); // il y a litige ici 
+
+	return x;
+}
+proba de succes P = 1/( M(b-a))
+proba rejet= 1-P
+cout 1/P
+
+
+

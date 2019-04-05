@@ -1,0 +1,19 @@
+
+
+l'echeencier 
+le temps de sim
+le nombre de client a l'instant t
+
+il faut une var sur l'etat des serveurs
+
+typedef struct Event{
+  //0 pour l'arrivée 1 pour la sortie et 2 pour la sortie du deuxiemme serveur
+  int type;
+  double date;
+  int etat;
+}event;
+
+
+event = AC FS1 FS2
+variables = e,temps,n,etat_serveur 1 et 2 ,nb_clien_rejete ,nb_arrive; B
+n_rej/n_arrive
