@@ -6,7 +6,7 @@ F(X(x) ) = P(X<=x)
 
 cas continue = Fx(x)= integrale(-inf,x) fx(t) dt
 
-propriété des fonction de REPARTITION
+propriété des fonction de REPARTITION--------------------------------( )
 
 	- pour tout x deans E(espace d'etat) 
 	la fonction f doit etre croissante et 
@@ -16,7 +16,7 @@ propriété des fonction de REPARTITION
 	P(0<=x<=b)	= P(x<=b)-P(x<=a)
 				=Fx((b) -Fx(a)
 			
-propriete DENSITE
+propriete DENSITE----------------------------------------------------( )
 	Fx(x)= integrale(-inf,x) fx(t) dt
 	fx(x)=Fx'(x)
 	-f positive pour tout x
@@ -37,15 +37,14 @@ varience[x]
 v[x]=E[x²]-(E[x])²
 ectype(x)=racine(V[x])
 
-methode de la transformation inverse de la fonction de repartition
+methode de la transformation inverse de la fonction de repartition--( )
 il faut connaitre la fonction de repartition
 il faut que la fonction soit inversible
 calcul de f-1x(x)
 
-methode de rejet
+methode de rejet --( )
 il faut connaitre la fonction de densite flbda(x)
 il faut pouvoir majorer la fonction
-il existe un m tel  que pour tout  x dans E fx(x) <= m
 
 
 aglo fonction de denstite //methode de rejet
@@ -63,7 +62,7 @@ y=Fx(x)
 x= en fonction de y et autres
 
 
-ex 8
+ex 8 -----------------------------------------------------------------
 f(x) = alphx² pour tout x dans[-A,+A]
 
 pour que f soit une fonction de densite 
@@ -98,5 +97,70 @@ proba de succes P = 1/( M(b-a))
 proba rejet= 1-P
 cout 1/P
 
+EX 9 ------------------------------------------------------------------
 
 
+decay = pouriture decadence degradation
+a= alpha
+axA - ax²
+
+aAx²/2  - ax³/3
+
+[]A 0   = aAA²/2 - aA³/3 - (O osef)
+		= aA³/6
+	aA³/6 =1
+	a=6/A³
+
+1) x appp [0,A]
+f(x) = ax(A-x)
+f(x)>0
+car x<A
+	A-x>0
+
+inte(0,A){aAx²/2  - ax³/3}
+donc c'est une fonction de densite
+
+2)
+lim(x-->0) f(x) = 0
+lim(x-->inf) f(x)   = aA(A-A)
+					= 0
+lim(x-->inf) f(x) != 1 
+donc cen'est pas une fonction de repartition
+_____
+
+0 <= x <= A
+0 <= A-x <= A
+0 <= x(A-x) <= A²
+0 <= x(A-x) <= A²
+0 <= 6x/A³(A-x) <= A² 6/A³
+0 <= f(x) <= 6/A
+
+unif()= rand [ 0, 1]
+
+double methode de rejet(){
+double x,y;
+do {
+	x=A unif();
+	y=6/A unif();
+	}while ( f(x) >y)
+return x;
+	}
+10)---------------------------------------------------------------------
+ici periodique veux dire que l'on retourn a la meme valeur
+
+lcd = modulo g pour generateur
+un bon generateur doit attenidre tmax
+rapidite proffit 56 mod 16 = 11[1000]
+
+Xo = 0
+Xn=(aXn-1 +c) mod m
+
+
+constante a x m x0
+suite periodique de peridoe tmax
+si c != 0 tmax = m
+si c = 0 tmax = m-1
+
+pgcd (c , m) = 1
+tout nombre premier qui divise m  divise a - 1
+si 4 divise m alors 4 divise a-1
