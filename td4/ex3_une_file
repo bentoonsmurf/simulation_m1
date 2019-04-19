@@ -24,3 +24,20 @@ variables
 evenements 
 	fin de service (1 et 2)
 	arrivee 1 et 2
+
+
+etat de la CMTC
+
+
+transition
+(n1,n2)
+--alpha1-->(n1 +1, n2) 	si n1+n2<b
+--alpha2-->(n1, n2 +1)	si n1+n2<b
+--alpha2-->(n1-1, n2 +1)	si n1+n2=b et n1>0
+--mu1--> (n1 -1, n2)	si n1>0
+--mu2--> (n1 , n2 -1)	si n1=0 et n2>0
+
+
+
+
+
