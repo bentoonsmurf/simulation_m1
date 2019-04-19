@@ -1,0 +1,26 @@
+une seule file avec rejet
+mais deux types de clients
+
+le client de type 1 est prioritaire en service = en temps 
+	si c plein il prend la place d'un type 1
+le 2 est en espace
+	on sert en priorite  les types1
+
+donne 
+	lambda1
+	lambda2
+	mu
+
+variables
+	var de bases
+		temps 
+		nombre de clien  n1 , n2
+		
+		echeancier
+		
+	arrive1 arrive2
+	compteur_rejet 1 et 2
+
+evenements 
+	fin de service (1 et 2)
+	arrivee 1 et 2

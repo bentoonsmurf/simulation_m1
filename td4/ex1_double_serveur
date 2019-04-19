@@ -1,0 +1,69 @@
+un system markovienn
+= pour passer al 'etat suivant on a besoin que de l'etaat courant
+le futur ne depend que du prensent 
+
+CM temps discert = CMTD
+CMTC
+distribution stationaire{
+	ergodique (fortement connexe)
+	aperiodique (pgcd de tout les cycles = 1)
+}
+
+P(X0=j/Xn-1=in-1 , Xn-2=in-2, ... X0=n0)
+P(Xn=j/Xn-1=in-1)
+P(i,j)= proja de transition de i vers j
+Pn(i,j) = proba de i vers j apres n etapes
+
+pour decrirre une CM
+{desription de l'etat
+{transitions{
+	CMTD 
+	somme(j)(P(i,j)) = 1
+	0<= P(i,j) <=1
+	
+	CMTC( generatieur infinitesimal)
+	p = taux de transition
+	somme(j)(P(i,j)) = 0
+	P(i,i)<= 0
+	P(i,j)>= 0
+	}
+}}
+
+EX ------------------------------------------------------------------------au control
+donne 
+	lambda  
+	mu
+
+variables
+	var de bases
+		temps 
+		nombre de clien dans chaque file   n1 , n2
+		echeancier
+	
+	compteur_rejet (traiter dans fin de service 1)
+	nombre de client arrive total
+
+evenements 
+	fin de service 1 et 2 
+	arrivee 
+---
+CM 
+---
+(n1,n2)
+--alpha-->(n1 +1, n2)
+--mu1--> (n1 +1, n2)	si n1>0 && n2<b
+--mu1--> (n1 -1, n2 +1)	si n1>0 && n2==b
+--mu2--> (n1, n2 -1) 	si n2 >0
+
+blocage
+(n1,n2)
+--alpha-->(n1 +1, n2)
+--mu1--> (n1 +1, n2)	si n1>0 && n2<b
+..
+--mu2--> (n1, n2 -1) 	si n2 >0
+
+
+
+
+
+
