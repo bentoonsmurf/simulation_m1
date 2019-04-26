@@ -38,6 +38,27 @@ transition
 --mu2--> (n1 , n2 -1)	si n1=0 et n2>0
 
 
+//mm1 ro/1-ro
+
+transition double client (m1 = nombre de rejet 1)
+(n1,n2,m1,m2)
+--alpha1-->(n1,n2,m1 +1,m2)	si n1+n2=b
+--alpha1-->(n1 +1,n2,m1,m2)) 	si n1+n2<b
+--alpha2-->(n1,n2 +1,m1,m2)	si n1+n2<b
+--alpha2-->(n1,n2,m1,m2 +1)	si n1+n2<b et n2=0
+--alpha2-->(n1 -1,n2 +1,m1 +1,m2)	si n1+n2=b et n1>0
+--mu1--> (n1 -1, n2,m1,m2)	si n1>0
+--mu2--> (n1 , n2 -1,m1 ,m2)	si n2>0 et n1=0
+
+i * pi i
+
+proba de rejet 1
+	tout les = pi
+	somme_sur(n1,n2,m1,m2)_de_( tout les (n1,n2,m1,m2) si m1>0)
+
+distributiont stationaire = vecteur propre de la matrice de transition
+
+
 
 
 

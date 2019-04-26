@@ -1,0 +1,79 @@
+
+
+
+variable
+	temps
+	n(actuel)
+	ncumul
+	nrejet
+	echeancier
+	bool system_operationel
+
+event 
+	AC
+	FS
+	panne
+	fin_panne
+	
+
+AC
+	ncumul++
+	
+	E.ajouter(AC,e.t + exp(lambda))
+	n++;
+	if(sys ==0)
+		n++;
+		if(n==1){
+			E.ajouter(FS,e.t + exp(mu))
+		}
+		else{
+			nrejet++
+		}
+		t= e.t // cumul du temps caché qq part
+	
+FS
+	if(sys ==0)// 0 = ok
+		if(n>0){
+			n--
+			if(n>0){
+				E.ajout(FS,e.t + exp(mu))
+			}
+			
+			
+		}
+	t=e.t
+
+AP
+	if(sys ==0){
+		sys=1;
+		nrejet += n;
+		n=0;
+		}
+		E.ajout(FP,e.t +exp(alpha))
+		E.ajout(AP,e.t +exp( beta))
+		t=e.t
+		
+	
+FP
+	if(sys == 1){
+		sys =0
+	}
+
+	t=e.t
+	
+init_ech
+	AC(0)
+	AP(epsilon)
+	
+proba_rejet=nrejet/ncumul
+
+transition
+(n,sys)
+--lambda-->(n +1,sys) si sys = ok
+--mu -->(n--,sys) si sys = ok  et n>0
+--beta -->(0 ,no)
+--alpha -->(n ,ok)
+
+ko stand for no
+pi(poir)=some_sur(n)_de_(pi(0,ko)))
+c une sommation de proba

@@ -1,0 +1,73 @@
+file mm inf
+
+une file plusieurs serveurs
+
+define
+	lambda 
+	mu
+variables
+	temps
+	nombre_de_clien_actuel = n
+	echeancier
+		
+event
+	arrive
+	fin_service
+	
+desc event 
+
+
+nombre moyen de client
+E(n)
+
+decriptoion de la CMTC
+
+pour la mm1
+	lambda/mu < 1
+	taux d'arrive /taux de service
+
+pour la mmm
+	
+
+
+
+arrive
+	n++ ; 
+	ncumul += (e.t -T )*n;
+	
+	E.ajouter(AC,e.t + exp(lambda))
+	E.ajouter(FS,e.t +exp(mu*n) ) // le fait qu'ils vont etre en paralele
+	T=e.t
+	
+FS
+	ncumul += (e.t -T )*n;
+	if (n>0)
+		n-- ; 
+		if (n>0)
+			E.ajouter(FS,e.t +exp(mu*n) )
+	T=e.t
+
+
+nmyone_client = ncumul/T
+
+
+mmm
+transition // lambda pas alpha ....
+(n)
+--alpha-->(n +1) 
+--min(n,m)* mu-->(n -1)	si n >0   // n* mu car on a plusieurs serveurs identiques n nombre de client
+
+mm inf
+transition // lambda pas alpha ....
+(n)
+--alpha-->(n +1) 
+--n* mu-->(n -1)	si n >0   // n* mu car on a plusieurs serveurs identiques n nombre de client
+
+pour mmm et mm inf
+E(n) = somme(n tant vers inf) de_(n * pi(n))
+
+pi = vecteur de proba 
+la somme de tout les elements de  pi = 1
+
+
+

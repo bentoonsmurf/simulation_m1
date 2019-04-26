@@ -1,0 +1,53 @@
+arrive temps continue service temps discret
+youssef_g10@hotmail.com
+
+arrive continue  service discret
+
+distribution de la somme de k var alea que chaquen suit un loi exponentielle
+lambda ne change pas pour toutes les k distributions 
+le coef de var d'une loi const est 0
+le coef de var d'une loi exp est = 1
+le coef de var d'une loi erlong est <1
+le coef de var d'une loi hyper exp est >1 == valeur dispersé
+
+ecart type / mu
+objectif  = oproximer la loi exp
+
+
+loi erlong(k, lambda )	
+	moyenne  k/lambda
+	vriance k/lambda²
+
+loi constante 
+	moyenne 1
+	variance 0
+
+lambda = k et k tand vers +inf et inf > 12
+
+
+on aproxime la loi constante par une loi d'erlongen lui donna les paramtres ci dessu
+le premier param est le noùbre d'etape que l'on fait erlong(2,lmbad) = A ---> b ---> c
+pur diferenciers les transitions on rajoute une composante dans la chaine 
+qui est un compteur de combien on en est dans la chain erlong
+exp( lambda) = erlong(1 , lambda)
+
+transition // lambda pas alpha ....
+(n,x)
+--alpha-->(n +1,x)
+--mu -->(n, x+1) si x<k-1
+--mu -->(n -1,x) si x=k-1	
+
+mu suit une loit erlong 
+alpha suis exp
+
+ coef de variation // (sigma/mu)
+
+
+
+
+
+
+
+
+
+
