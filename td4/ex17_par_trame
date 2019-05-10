@@ -1,0 +1,98 @@
+
+il n'y a pas de perte
+tout les delta on envoie une trame non vide
+de les toc 0 ou 5 ou 10 paquet arrive
+
+paramectre 
+	c
+	seuil
+	delta
+
+event 2
+	Arrive (proba)
+	evoie du conteneur
+
+variables
+	echeancier
+	
+	liste de <nb de paquet> // ou moyenne de taux de remplissage dynamique
+	nombre de conteneur envoyé
+	nombre de paquet du conteneur = N
+	liste de <tps de remplissage> // ou moyenne de temps de remplissage dyanmique
+	tps remplissage // actuel
+	tps simulation = 
+	
+	
+	T
+	N nombre de paquet actuel
+	timer = tmps qd tu remplis un conteneur(reset tt le temps)
+	timer cumul la somme des timer
+	temps cumul
+	compteur = nombre de contener envoyé
+	C max size
+
+
+
+
+AP{
+	A = nb_arrive(p0, p1 , p2)
+	if(N+A >C){
+		timercumul += timer
+		tauxcumul += c
+		N=N+A-C
+		timer=0
+		compteur++
+	}
+	else{
+		if(A == 0){
+		
+		}
+		else(N+A >0){
+			timer++
+			n+=A
+		}
+		
+		
+		
+		
+	}
+
+}
+
+
+CP{
+if (timer == delta ou N> seuil){
+	timercumul+= timer
+	tauxcumul+=N
+	timer=0
+	N=0
+	compteur++
+	}
+	
+}
+	
+un etat = nombre de paquet dans le trame
+
+(n,timer) =etat
+transition
+(n,timer)
+--pA-->(n+A ,timer+1) if n+a<c et n+a >0
+--pA -->(n+A-c,0) si n+a >c
+--1 -->(0 ,0)if timer == delta ou N> seuil
+--pA -->(n,timer) si n+a<c et n+a ==0
+0<n<c  0<timer<delta
+
+temps de remplissage tmoyen 
+	soit s l'emssemble des etats [n,t] tq n==delta|| n >seuil
+	
+	t moy = somme(n,t appartien a s)( t * pi(n,t) 
+	taux = somme(n,t apartien a s) (n/
+
+
+
+
+
+
+
+
+
