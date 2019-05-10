@@ -1,0 +1,39 @@
+
+temps moyen d'attent E[a]
+avant de faire un service on prend le temps
+90percentil
+choisirun nombre qui divise les valeur en 90/10
+les valeur de lambda
+lambda.txt est notre entre pour prog.c 
+prog.c gener 3 fichier de resultat pout=r le model 1 2 et 3
+
+valeur de 
+labda  			E[A] 		90[A]
+pour otre R 
+
+90[A]									E[A]
+|										|
+|										|
+|										|
+|________> lambda						|_________>lambda
+
+
+
+-----------------------------------------------------------------------------
+loi de little pour exprimer le temps d'attente en fonction du temps moyen
+une relation entre n et t
+n bar = t bar * labda
+t= n/lambda
+n dans le system  t dans le system
+t bar = tps moyen d'att
+
+-----------------------------------------------------------------------------
+
+
+a chaque fois qu'un client part ca veux dirre qu'il a attendu
+
+ro est la condition de stabilite
+model2   lambda <mu 
+model1 lambda< m * mu 
+
+
